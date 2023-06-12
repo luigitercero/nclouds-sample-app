@@ -1,0 +1,10 @@
+node_modules
+k8s_manifests
+npm-debug.log
+Dockerfile
+kustomization.yml
+README.md
+.gitignore
+.dockerignore
+.github
+test
