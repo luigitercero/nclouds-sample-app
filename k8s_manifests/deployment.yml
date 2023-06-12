@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nclouds-sample-app
+  labels:
+    app: nclouds
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nclouds
+  template:
+    metadata:
+      labels:
+        app: nclouds
+    spec:
+      containers:
+      - name: sample-app
+        image: ncloudspublic/sample-app:latest
+        env:
+        - name: APPLICATION
+          value: nclouds-sample-app
+        ports:
+        - containerPort: 3000
