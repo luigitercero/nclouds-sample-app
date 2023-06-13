@@ -18,7 +18,24 @@ jobs:
           command: |
             docker build -t ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPO}:${CIRCLE_SHA1:0:10} .
             docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${REPO}:${CIRCLE_SHA1:0:10}
+  k8s:
+    docker: 
+      - image: arogudl/readytodeploy
+    steps:
+      - checkout
+      - run:
+          name: "Kubernetes"
+          command: |
+            ACCOUNT_ROLE=$(aws sts assume-role --role-arn ${KUBE_ROLE} --role-session-name k8s)
+            export AWS_ACCESS_KEY=$(echo "${ACCOUNT_ROLE}" | jq -r '.Credentials.AccessKeyId')
+            export AWS_SECRET_ACCESS_KEY=$(echo "${ACCOUNT_ROLE}" | jq -r '.Credentials.SecretAccessKey')
+            export AWS_SESSION_TOKEN=$(echo "${ACCOUNT_ROLE}" | jq -r '.Credentials.SessionToken')
+            aws eks update-kubeconfig --name nclouds-cluster --region ${REGION}
+            kubectl get pods
 workflows:
   nclouds-workflow:
     jobs:
       - build
+      - k8s:
+          requires:
+            - build
