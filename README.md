@@ -28,3 +28,67 @@ The application supports the following configurations via environment variables:
 - TBD
 ### Jenkins
 - TBD
+
+## Usuario aws
+
+### programatic user
+  - Create User IAM
+  - Attach policy AmazonEC2ContainerRegistryFullAccess & Kubbernbetes AdminPolocy
+````
+#EC2
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:*",
+                "cloudtrail:LookupEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:AWSServiceName": [
+                        "replication.ecr.amazonaws.com"
+                    ]
+                }
+            }
+        }
+    ]
+}
+# Kubernetes
+{
+    "Version": "2012-10-17",
+    "Statement": {
+        "Effect": "Allow",
+        "Action": "sts:AssumeRole",
+        "Resource": "arn:aws:iam::737584674007:role/KubernetesAdmin"
+    }
+}
+
+````
+- Generate Key command line interface
+- go to CircleCI ->Projectc setting -> eviroment Variables
+- AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION, ACCOUNT_ID, REPO (IT'S REPOSITORY ECR)
+- My user must assume kubenetes Admin
+  ```sh
+  aws sts assume-role --role-arn <role_arn> --role-session-name azurdia-project-2-optinal --profile devops
+  # role contains 
+  # AmazonEKSClusterPolicy
+  # AmazonEKS_CNI_POlicy
+  # AmazonEKSServicePolicy
+  # AmazonEKSWorkerNodePolicy
+  # AmazonEKSFargatePodExecutionRolePolicy
+  # AmazonEKSVPCResourceController
+  # AmazonEKSLocalOutpostClusterPolicy
+  # AWSFaultInjectionSimulatorEKSAccess
+  ```
+- aws sts get-caller-identity --profile devops
+- CIRCLE_SHAL comes from logs circleCI steps
