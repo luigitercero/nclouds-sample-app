@@ -76,7 +76,7 @@ The application supports the following configurations via environment variables:
 ````
 - Generate Key command line interface
 - go to CircleCI ->Projectc setting -> eviroment Variables
-- AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION, ACCOUNT_ID, REPO (IT'S REPOSITORY ECR)
+- AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION, ACCOUNT_ID, REPO (IT'S REPOSITORY ECR) and KUBE_ROLE (it's iam kubernetes admin arn)
 - My user must assume kubenetes Admin
   ```sh
   aws sts assume-role --role-arn <role_arn> --role-session-name azurdia-project-2-optinal --profile devops
