@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nclouds-sample-app
+  name: azurdia-nclouds-sample-app
   namespace: azurdia-namespace
   labels:
     app: nclouds
@@ -20,7 +20,7 @@ spec:
         image: ncloudspublic/sample-app:latest
         env:
         - name: APPLICATION
-          value: nclouds-sample-app
+          value: azurdia-nclouds-sample-app
         ports:
         - containerPort: 3000
         resources:
