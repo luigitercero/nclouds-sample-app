@@ -1,0 +1,20 @@
+replicaCount: 3
+image:
+  repository: ncloudspublic/sample-app
+  tag: latest
+  pullPolicy: IfNotPresent
+resources:
+  limits:
+    memory: 256Mi
+service:
+  name: azurdia-nclouds-sample-app
+  port: 3000
+
+serviceAccount:
+  create: true
+
+ingress:
+  enabled: true
+
+autoscaling:
+  enabled: true
