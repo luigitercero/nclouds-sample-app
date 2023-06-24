@@ -9,6 +9,7 @@ resources:
 service:
   name: azurdia-nclouds-sample-app
   port: 80
+  containerPort: 3000
   type: LoadBalancer
 serviceAccount:
   create: true
