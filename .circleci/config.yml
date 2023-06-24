@@ -31,7 +31,7 @@ jobs:
             export AWS_SECRET_ACCESS_KEY=$(echo "${ACCOUNT_ROLE}" | jq -r '.Credentials.SecretAccessKey')
             export AWS_SESSION_TOKEN=$(echo "${ACCOUNT_ROLE}" | jq -r '.Credentials.SessionToken')
             aws eks update-kubeconfig --name nclouds-cluster --region ${REGION}
-            helm upgrade --install azurdia-release ./azurdia-chart --namespace azurdia-ns
+            helm upgrade --install azurdia-release ./azurdia-chart
 workflows:
   nclouds-workflow:
     jobs:
