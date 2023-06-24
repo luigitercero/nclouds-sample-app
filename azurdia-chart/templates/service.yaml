@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: {{ .Values.service.name }}
   namespace: {{ .Values.app.ns.name }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.route53url }}
+
 spec:
   selector:
     app: {{ template "azurdia-chart.name" . }}

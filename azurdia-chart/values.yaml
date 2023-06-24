@@ -16,8 +16,6 @@ serviceAccount:
 ingress:
   enabled: true
 
-autoscaling:
-  enabled: true
 
 app:
   deployment:
@@ -26,3 +24,17 @@ app:
     name: azurdia-svc
   ns:
     name: azurdia-ns
+
+route53url: azurdia-project-2.training.test-something.com
+
+hpa:
+  maxReplicas: 15
+  minReplicas: 3
+  maxcpu: 60
+
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
