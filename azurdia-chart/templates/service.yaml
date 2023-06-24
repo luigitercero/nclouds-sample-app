@@ -1,13 +1,8 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: azurdia-back
----
-apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.service.name }}
-  namespace: azurdia-back
+  namespace: {{ .Values.app.ns.name }}
 spec:
   selector:
     app: {{ template "azurdia-chart.name" . }}

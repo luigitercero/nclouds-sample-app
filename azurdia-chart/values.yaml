@@ -18,3 +18,11 @@ ingress:
 
 autoscaling:
   enabled: true
+
+app:
+  deployment:
+    name: azurdia-deploy
+  service:
+    name: azurdia-svc
+  ns:
+    name: azurdia-ns

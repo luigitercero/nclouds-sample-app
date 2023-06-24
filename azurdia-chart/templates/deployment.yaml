@@ -1,15 +1,10 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: azurdia-dev
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "azurdia-chart.fullname" . }}
   labels:
     app: {{ template "azurdia-chart.name" . }}
-  namespace: azurdia-dev
+  namespace: {{ .Values.app.ns.name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
