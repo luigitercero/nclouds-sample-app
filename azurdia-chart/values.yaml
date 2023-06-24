@@ -8,8 +8,8 @@ resources:
     memory: 256Mi
 service:
   name: azurdia-nclouds-sample-app
-  port: 3000
-
+  port: 80
+  type: LoadBalancer
 serviceAccount:
   create: true
 
