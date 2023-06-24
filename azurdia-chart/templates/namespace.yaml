@@ -4,6 +4,5 @@ metadata:
   name: azurdia-ns
   labels:
     app.kubernetes.io/managed-by: Helm
-  annotations:
     meta.helm.sh/release-name: azurdia-release
     meta.helm.sh/release-namespace: azurdia-ns
