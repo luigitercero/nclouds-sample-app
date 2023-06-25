@@ -31,7 +31,7 @@ route53url: azurdia-project-2.training.test-something.com
 hpa:
   maxReplicas: 15
   minReplicas: 3
-  maxcpu: 60
+  maxcpu: 55
 
 
 autoscaling:

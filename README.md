@@ -18,7 +18,7 @@ The application supports the following configurations via environment variables:
 | Variable       | Description                                  | Default                   |
 |----------------|----------------------------------------------|---------------------------|
 | PORT           | The port the applications listens on         | 3000                      |
-| CUSTOM_MESSAGE | A message to display in the default web page | 'This is a sample app :)' |
+| CUSTOM_MESSAGE | A message to display in the default web page | 'This is Azurdia sample app :)' |
 
 ## Example CI/CD  Pipelines
 ### Github Actions
